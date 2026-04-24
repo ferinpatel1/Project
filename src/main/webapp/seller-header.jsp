@@ -95,7 +95,7 @@
                           <a class="nav-link" href="seller-add-product.jsp">Add Product</a>
                         </li>
                          <li class="nav-item">
-                          <a class="nav-link" href="contact.jsp">View Product</a>
+                          <a class="nav-link" href="view-product.jsp">View Product</a>
                         </li>
                     
                     <li class="nav-item">
