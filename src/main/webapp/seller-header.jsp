@@ -70,41 +70,8 @@
                     <li class="nav-item">
                       <a class="nav-link" href="index.jsp">Home</a>
                     </li>
-                    <li class="nav-item submenu dropdown">
-                      <a
-                        href="#"
-                        class="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        >Shop</a
-                      >
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a class="nav-link" href="category.jsp"
-                            >Shop Category</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="single-product.jsp"
-                            >Product Details</a
-                          >
-                        </li>
-                        
-                        <li class="nav-item">
-                          <a class="nav-link" href="checkout.jsp"
-                            >Product Checkout</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="cart.jsp">Shopping Cart</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                          <a class="nav-link" href="contact.jsp">Contact</a>
-                        </li>
+                   
+                    
                      
                     
                     <% if(u==null){
@@ -122,6 +89,16 @@
                     %>
                     
                     <li class="nav-item">
+                          <a class="nav-link" href="contact.jsp">Contact</a>
+                        </li>
+                         <li class="nav-item">
+                          <a class="nav-link" href="seller-add-product.jsp">Add Product</a>
+                        </li>
+                         <li class="nav-item">
+                          <a class="nav-link" href="contact.jsp">View Product</a>
+                        </li>
+                    
+                    <li class="nav-item">
                         <a class="nav-link" href="seller-change-password.jsp">Change Password</a>
                       </li>
                       
@@ -130,8 +107,8 @@
                       </li>
                       
                       <li class="nav-item">
-                       <a class="nav-link" href="profile.jsp">
-                        <img  href="profile.jsp" src="profile_picture/<%=u.getProfile_picture()%>" style="height:50px; width:50px; border-radius:50%;  ">
+                       <a class="nav-link" href="seller-profile.jsp">
+                        <img  href="seller-profile.jsp" src="profile_picture/<%=u.getProfile_picture()%>" style="height:50px; width:50px; border-radius:50%;  ">
                         </a>
                          </li>
                       

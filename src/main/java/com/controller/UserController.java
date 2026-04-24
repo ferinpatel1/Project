@@ -46,6 +46,7 @@ public class UserController extends HttpServlet {
 				
 				if(request.getParameter("password").equals(request.getParameter("cpassword"))) {
 				User u =new User();
+				u.setUsertype(request.getParameter("usertype"));
 				u.setFname(request.getParameter("fname"));
 				u.setLname(request.getParameter("lname"));
 				u.setEmail(request.getParameter("email"));
@@ -103,7 +104,13 @@ public class UserController extends HttpServlet {
 					
 					HttpSession session =request.getSession();
 					session.setAttribute("u", u);
+					
+					if(u.getUsertype().equals("buyer")) {
 					request.getRequestDispatcher("index.jsp").forward(request, response);
+					}else {
+						request.getRequestDispatcher("seller-index.jsp").forward(request, response);
+						
+					}
 					
 				}
 				else {
@@ -126,7 +133,14 @@ public class UserController extends HttpServlet {
 			
 			request.setAttribute("msg", "User Profile Upadated Succesfully");
 			session.setAttribute("u", u);
-			request.getRequestDispatcher("profile.jsp").forward(request, response);
+			if(u.getUsertype().equals("buyer")) {
+				request.getRequestDispatcher("profile.jsp").forward(request, response);
+	    	}
+	    	else {
+	    		request.getRequestDispatcher("seller-profile.jsp").forward(request, response);
+	    		
+	    	}
+			
 			
 	}
 		else if(action.equalsIgnoreCase("changepassword")) {
@@ -146,18 +160,36 @@ public class UserController extends HttpServlet {
 				    }
 				    else {
 				    	request.setAttribute("msg", "New password can not be same as old");
-						request.getRequestDispatcher("change-password.jsp").forward(request, response);
+				    	if(u.getUsertype().equals("buyer")) {
+				    		request.getRequestDispatcher("change-password.jsp").forward(request, response);
+				    	}
+				    	else {
+				    		request.getRequestDispatcher("seller-change-password.jsp").forward(request, response);
+				    		
+				    	}
 				    }
 				    	
 				    }
 				 else {
 				    	request.setAttribute("msg", "New password and Confirm password not matching");
-						request.getRequestDispatcher("change-password.jsp").forward(request, response);
+				    	if(u.getUsertype().equals("buyer")) {
+				    		request.getRequestDispatcher("change-password.jsp").forward(request, response);
+				    	}
+				    	else {
+				    		request.getRequestDispatcher("seller-change-password.jsp").forward(request, response);
+				    		
+				    	}
 				    }
 				}
 			 else {
 			    	request.setAttribute("msg", "Enter Correct old Password");
-					request.getRequestDispatcher("change-password.jsp").forward(request, response);
+			    	if(u.getUsertype().equals("buyer")) {
+			    		request.getRequestDispatcher("change-password.jsp").forward(request, response);
+			    	}
+			    	else {
+			    		request.getRequestDispatcher("seller-change-password.jsp").forward(request, response);
+			    		
+			    	}
 			    }
 			
 		}

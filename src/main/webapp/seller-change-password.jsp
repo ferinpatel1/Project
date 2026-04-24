@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="header.jsp" %>
+<%@include file="seller-header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,12 +18,12 @@
             class="banner_content d-md-flex justify-content-between align-items-center"
           >
             <div class="mb-3 mb-md-0">
-              <h2>Sign up</h2>
+              <h2>Change Password</h2>
               <p>Very us move be blessed multiply night</p>
             </div>
             <div class="page_link">
               <a href="index.jsp">Home</a>
-              <a href="signup.jsp">Sign up</a>
+              <a href="seller-change-password.jsp">Change Password</a>
             </div>
           </div>
         </div>
@@ -39,75 +39,39 @@
 
       <div class="row">
         <div class="col-12">
-          <h2 class="contact-title">User Sign up</h2>
+          <h2 class="contact-title">User Change Password</h2>
         </div>
         <div class="col-lg-12 mb-4 mb-lg-0">
         
-        <%
+          <%
         	 if(request.getAttribute("msg")!=null){
         		 out.println(request.getAttribute("msg"));
         	 }
         %>
         
-          <form class="form-contact contact_form"  method="post"  action="UserController" enctype="multipart/form-data">
+        
+          <form class="form-contact contact_form"  method="post"  action="UserController">
             <div class="row">
-            
-            <div class="col-sm-12 pb-3" >
+                           <div class="col-sm-6">
                 <div class="form-group">
-                 <select class="form-control" name="usertype" id="name">
-                   
-                   <option>-----------Select User Type------------</option>
-                   <option value="buyer">Buyer</option>
-                   <option value="seller">Seller</option>
-                 </select>
-                </div>
-              </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="fname" id="name" type="text" placeholder="Enter your First name">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="lname" id="name" type="text" placeholder="Enter your Last name">
+                  <input class="form-control" name="old_password" id="name" type="password" placeholder="Enter old Password">
                 </div>
               </div>
                <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="email" id="email" type="email" placeholder="Enter your Email">
+                  <input class="form-control" name="new_password" id="name" type="password" placeholder="Enter New Password">
                 </div>
               </div>
                <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="mobile" id="name" type="text" placeholder="Enter your Mobile No">
+                  <input class="form-control" name="cpassword" id="name" type="password" placeholder="Confirm New Password">
                 </div>
               </div>
-               <div class="col-12">
-                <div class="form-group">
-                    <textarea class="form-control w-100" name="address" id="message" cols="30" rows="9" placeholder="Enter your Address"></textarea>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
-                <p>Attech Profile Picture : </p><input type="file" name="profile_picture">
-                </div>
-              </div>
-               <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="password" id="name" type="password" placeholder="Password">
-                </div>
-              </div>
-               <div class="col-sm-6">
-                <div class="form-group">
-                  <input class="form-control" name="cpassword" id="name" type="password" placeholder="Confirm password">
-                </div>
-              </div>
-             
-             
+                            
               
             </div>
             <div class="form-group mt-lg-3">
-              <button type="submit" name="action" value="sign up" class="main_btn">Sign Up</button>
+              <button type="submit" name="action" value="changepassword" class="main_btn">Change Passwoed</button>
             </div>
           </form>
 

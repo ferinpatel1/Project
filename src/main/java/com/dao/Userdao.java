@@ -34,7 +34,7 @@ public class Userdao {
 		try {
 			
 			Connection conn=ProjectUtil.createConnection();
-			String sql="insert into user(fname,lname,email,mobile,address,password,profile_picture) values(?,?,?,?,?,?,?)";
+			String sql="insert into user(fname,lname,email,mobile,address,password,profile_picture,usertype) values(?,?,?,?,?,?,?,?)";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setString(1, u.getFname());
 			pst.setString(2, u.getLname());
@@ -43,6 +43,7 @@ public class Userdao {
 			pst.setString(5, u.getAddress());
 			pst.setString(6, u.getPassword());
 			pst.setString(7, u.getProfile_picture());
+			pst.setString(8, u.getUsertype());
 			pst.executeUpdate();
 			
 			
@@ -68,6 +69,7 @@ public class Userdao {
 			
 			if(rs.next()) {
 				u = new User();
+				u.setUsertype(rs.getString("usertype"));
 				u.setUid(rs.getInt("uid"));
 				u.setFname(rs.getString("fname"));
 				u.setLname(rs.getString("lname"));
