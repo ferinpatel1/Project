@@ -65,7 +65,7 @@
               id="navbarSupportedContent"
             >
               <div class="row w-100 mr-0">
-                <div class="col-lg-7 pr-0">
+                <div class="col-lg-9 pr-0">
                   <ul class="nav navbar-nav center_nav pull-right">
                     <li class="nav-item">
                       <a class="nav-link" href="index.jsp">Home</a>

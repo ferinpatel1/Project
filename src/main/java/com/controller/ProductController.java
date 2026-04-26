@@ -72,6 +72,47 @@ public class ProductController extends HttpServlet {
 			
 		}
 		
+		else if(action.equalsIgnoreCase("Update")) {
+			
+			Product p =new Product();
+			p.setPid(Integer.parseInt(request.getParameter("pid")));
+			p.setProduct_category(request.getParameter("product_category"));
+			p.setProduct_name(request.getParameter("product_name"));
+			p.setProduct_price(Integer.parseInt(request.getParameter("product_price")));
+			p.setProduct_desc(request.getParameter("product_desc"));
+			
+			
+			
+			String savepath = "/Users/ferin/Desktop/Java/Project/src/main/webapp/product_image";
+			File fileSaveDir = new File(savepath);
+			if(!fileSaveDir.exists()) {
+				fileSaveDir.mkdir();
+			}
+			Part file1 = request.getPart("product_image");
+			String fileName = extractfilename(file1);
+			String Fullpath =savepath + File.separator + fileName;
+			File file = new File(Fullpath);
+		    if (file.exists()) {
+		        file.delete();
+		    }
+		    file1.write(Fullpath);
+			String savePath2 = "/Users/ferin/Desktop/Java/Project/src/main/webapp/product_image";
+			File imgSaveDir =new File(savePath2);
+			if(imgSaveDir.exists()) {
+				imgSaveDir.delete();
+			}
+			imgSaveDir.mkdir();
+			
+			p.setProduct_image(fileName);
+			ProductDao.UpdateProduct(p);
+			
+			request.setAttribute("msg", "Product Updated Successfully");
+			request.getRequestDispatcher("seller-index.jsp").forward(request, response);
+			
+			
+		}
+		}
+		
 	}
 
-}
+
