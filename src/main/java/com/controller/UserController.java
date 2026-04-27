@@ -129,6 +129,34 @@ public class UserController extends HttpServlet {
 			u.setLname(request.getParameter("lname"));
 			u.setMobile(Long.parseLong(request.getParameter("mobile")));
 			u.setAddress(request.getParameter("address"));
+			
+			String savepath = "/Users/ferin/Desktop/Java/Project/src/main/webapp/profile_picture";
+			File fileSaveDir = new File(savepath);
+			if(!fileSaveDir.exists()) {
+				fileSaveDir.mkdir();
+			}
+			Part file1 = request.getPart("profile_picture");
+			String fileName = extractfilename(file1);
+			
+			String Fullpath =savepath + File.separator + fileName;
+			File file = new File(Fullpath);
+		    if (file.exists()) {
+		        file.delete();
+		    }
+		    file1.write(Fullpath);
+		    String savePath2 = "/Users/ferin/Desktop/Java/Project/src/main/webapp/profile_picture";
+			File imgSaveDir =new File(savePath2);
+			if(imgSaveDir.exists()) {
+				imgSaveDir.delete();
+				
+			}
+			imgSaveDir.mkdir();
+			u.setProfile_picture(fileName);
+		    
+		    
+			
+			
+			
 			Userdao.updateProfile(u);
 			
 			request.setAttribute("msg", "User Profile Upadated Succesfully");

@@ -113,6 +113,57 @@ try {
 	
 		
 	}
+	
+	public static void DeleteProduct(int pid) {
+		
+		try {
+					
+					Connection conn = ProjectUtil.createConnection();
+					String sql = "delete from product where pid=?";
+					PreparedStatement pst = conn.prepareStatement(sql);
+					
+					
+					pst.setInt(1,pid);
+					
+					pst.executeUpdate();
+					
+					
+				} catch (Exception e) {
+				}
+				
+			
+				
+			}
+	
+	
+	public static List<Product> getAllProduct(){
+		List<Product> list = new ArrayList<Product>();
+		try {
+			Connection conn=ProjectUtil.createConnection();
+			String sql ="select * from product";
+			PreparedStatement pst=conn.prepareStatement(sql);
+			
+			ResultSet rs=pst.executeQuery();
+			while(rs.next()) {
+				Product p=new Product();
+				p.setPid(rs.getInt("pid"));
+				p.setUid(rs.getInt("uid"));
+				p.setProduct_price(rs.getInt("product_price"));
+				p.setProduct_category(rs.getString("product_category"));
+				p.setProduct_desc(rs.getString("product_desc"));
+				p.setProduct_name(rs.getString("product_name"));
+				p.setProduct_image(rs.getString("product_image"));
+				list.add(p);
+				
+			}
+			
+		} catch (Exception e) {
+			
+		}
+		
+		return list;
+		
+	}
 
 
 }

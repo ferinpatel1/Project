@@ -94,13 +94,14 @@ public class Userdao {
 		try {
 			
 			Connection conn=ProjectUtil.createConnection();
-			String sql="update user set fname=?,lname=?,mobile=?,address=? where email=?";
+			String sql="update user set fname=?,lname=?,mobile=?,address=?,profile_picture=? where email=?";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setString(1,u.getFname());
 			pst.setString(2, u.getLname());
 			pst.setLong(3, u.getMobile());
 			pst.setString(4, u.getAddress());
-			pst.setString(5, u.getEmail());
+			pst.setString(5, u.getProfile_picture());
+			pst.setString(6, u.getEmail());
 			pst.executeUpdate();
 			
 			

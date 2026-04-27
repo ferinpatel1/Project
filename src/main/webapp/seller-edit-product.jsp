@@ -78,7 +78,7 @@
                    <option value="Women" selected="selected">Women</option>
                    <option value="Kids">Kids</option>
                      
-                   <%}else if(p.getProduct_category().equals("Women")){  %>
+                   <%}else if(p.getProduct_category().equals("Kids")){  %>
                 
                  
                    

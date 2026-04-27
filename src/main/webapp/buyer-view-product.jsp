@@ -1,30 +1,31 @@
-<%@page import="com.bean.Product"%>
-<%@page import="java.util.List"%>
 <%@page import="com.dao.ProductDao"%>
+<%@page import="com.bean.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@include file="seller-header.jsp" %>
+    <%@include file="header.jsp" %>
+    
+    <%Product p=ProductDao.getProduct(Integer.parseInt(request.getParameter("pid")));%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+   
   </head>
 
   <body>
    
-
     <!--================Home Banner Area =================-->
     <section class="banner_area">
       <div class="banner_inner d-flex align-items-center">
         <div class="container">
-          <div class="banner_content d-md-flex justify-content-between align-items-center">
+          <div
+            class="banner_content d-md-flex justify-content-between align-items-center"
+          >
             <div class="mb-3 mb-md-0">
-              <h2>Seller View Product</h2>
-             
+              <h2>Product Details</h2>
             </div>
             <div class="page_link">
               <a href="seller-index.jsp">Home</a>
-              <a href="view-product.jsp">View Product</a>
+              <a href="seller-product-details.jsp">Product Details</a>
             </div>
           </div>
         </div>
@@ -32,58 +33,65 @@
     </section>
     <!--================End Home Banner Area =================-->
 
-    <!--================Category Product Area =================-->
-    <section class="cat_product_area ">
+    <!--================Single Product Area =================-->
+    <div class="product_image_area">
       <div class="container">
-        <div class="row flex-row-reverse">
-          <div class="col-lg-12">
-            <div class="latest_product_inner">
-              <div class="row">
-              <%
-              List<Product> list=ProductDao.getProductBySeller(u.getUid());
-              for(Product p:list){
-           
-              %>
-                <div class="col-lg-4 col-md-6">
-                  <div class="single-product">
-                    <div class="product-img">
-                      <img
-                        class="card-img"
-                        src="product_image/<%=p.getProduct_image()%>"
-                        alt=""
-                        style="height:400px; weight:100px;"
-                      />
-                      <div class="p_icon">
-                        <a href="seller-product-details.jsp?pid=<%=p.getPid()%>">
-                          <i class="ti-eye"></i>
-                        </a>
-                       
-                      </div>
-                    </div>
-                    <div class="product-btm">
-                      <a href="#" class="d-block">
-                        <%=p.getProduct_name()%>
-                      </a>
-                      <div class="mt-3">
-                        <span class="mr-4">₹ <%=p.getProduct_price()%></span>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div class="row s_product_inner">
+          <div class="col-lg-6">
+            <div class="s_product_img">
+              <div
+                id="carouselExampleIndicators"
+                class="carousel slide"
+                data-ride="carousel"
+              >
                 
-                <%
-              }
-                %>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      class="d-block w-100 h-50"
+                      src="product_image/<%=p.getProduct_image()%>"/>
+                  </div>
+                  
+                </div>
               </div>
             </div>
           </div>
-
-     
+          <div class="col-lg-5 offset-lg-1">
+            <div class="s_product_text">
+              <h3><%=p.getProduct_name() %></h3>
+              <h2><%=p.getProduct_price() %></h2>
+              <ul class="list">
+                <li>
+                  <a class="active" href="#">
+                    <span>Category</span><%=p.getProduct_category() %></a
+                  >
+                </li>
+                
+              </ul>
+              <p>
+                <%=p.getProduct_desc()%>
+              </p>
+              
+              <div class="card_area">
+                <a class="main_btn" href="seller-edit-product.jsp?pid=<%=p.getPid()%>">ADD To Cart</a>
+                <a class="main_btn" href="seller-delete-product.jsp?pid=<%=p.getPid()%>">ADD to Wishlist</a>
+                <a class="icon_btn" href="#">
+                  <i class="lnr lnr lnr-diamond"></i>
+                </a>
+                <a class="icon_btn" href="#">
+                  <i class="lnr lnr lnr-heart"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <!--================End Category Product Area =================-->
+    </div>
+    <!--================End Single Product Area =================-->
+
+    <!--================Product Description Area =================-->
+    
+    <!--================End Product Description Area =================-->
 
     <!--================ start footer Area  =================-->
     <footer class="footer-area section_gap">
