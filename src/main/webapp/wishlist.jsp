@@ -1,123 +1,110 @@
 <%@page import="com.dao.WishlistDao"%>
+<%@page import="com.bean.wishlist"%>
 <%@page import="com.dao.ProductDao"%>
 <%@page import="com.bean.Product"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@include file="header.jsp" %>
-    
-    <%Product p=ProductDao.getProduct(Integer.parseInt(request.getParameter("pid")));%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   
+    
   </head>
 
   <body>
    
+
     <!--================Home Banner Area =================-->
     <section class="banner_area">
       <div class="banner_inner d-flex align-items-center">
         <div class="container">
-          <div
-            class="banner_content d-md-flex justify-content-between align-items-center"
-          >
+          <div class="banner_content d-md-flex justify-content-between align-items-center">
             <div class="mb-3 mb-md-0">
-              <h2>Product Details</h2>
+              <h2>Wishlist</h2>
+             
             </div>
-            <div class="page_link">
-              <a href="seller-index.jsp">Home</a>
-              <a href="seller-product-details.jsp">Product Details</a>
-            </div>
+            
           </div>
         </div>
       </div>
     </section>
     <!--================End Home Banner Area =================-->
 
-    <!--================Single Product Area =================-->
-    <div class="product_image_area">
+    <!--================Category Product Area =================-->
+    <section class="cat_product_area section_gap">
       <div class="container">
-        <div class="row s_product_inner">
-          <div class="col-lg-6">
-            <div class="s_product_img">
-              <div
-                id="carouselExampleIndicators"
-                class="carousel slide"
-                data-ride="carousel"
-              >
-                
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img
-                      class="d-block w-100 h-50"
-                      src="product_image/<%=p.getProduct_image()%>"/>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5 offset-lg-1">
-            <div class="s_product_text">
-              <h3><%=p.getProduct_name() %></h3>
-              <h2><%=p.getProduct_price() %></h2>
-              <ul class="list">
-                <li>
-                  <a class="active" href="#">
-                    <span>Category</span><%=p.getProduct_category() %></a
-                  >
-                </li>
-                
-              </ul>
-              <p>
-                <%=p.getProduct_desc()%>
-              </p>
-              
-              <div class="card_area">
+        <div class="row flex-row-reverse">
+          <div class="col-lg-12">
+            
+            
+            <div class="latest_product_inner">
+              <div class="row">
               
               <%
-                
-              if(u ==null){
-             %>  
-            	  <a class="main_btn" href="login.jsp">Login</a>
-              <%
-              }
               
-              else{
+              List<wishlist> list = WishlistDao.getWishlistByUser(u.getUid());
+              
+              for(wishlist w: list ){
+            	  
+            	  Product p = ProductDao.getProduct(w.getPid());
               %>
-              
-                <a class="main_btn" href="seller-edit-product.jsp?pid=<%=p.getPid()%>">ADD To Cart</a>
-                
+                <div class="col-lg-4 col-md-6">
+                  <div class="single-product">
+                    <div class="product-img">
+                      <img
+                        class="card-img"
+                        src="product_image/<%=p.getProduct_image()%>"
+                        alt=""
+                        
+                        
+                      />
+                      <div class="p_icon">
+                        <a href="buyer-view-product.jsp?pid=<%=p.getPid()%>">
+                          <i class="ti-eye"></i>
+                        </a>
+                        <a href="#">
+                          <i class="ti-heart"></i>
+                        </a>
+                        <a href="#">
+                          <i class="ti-shopping-cart"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="product-btm">
+                      <a href="#" class="d-block">
+                        <h4><%=p.getProduct_name()%></h4>
+                      </a>
+                      <div class="mt-3">
+                        <span class="mr-4"><%=p.getProduct_price()%></span>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <%
-                boolean flag =WishlistDao.checkwishlist(p.getPid(), u.getUid());
-                if(flag==false)
-                {
-                %>
-                <a class="main_btn" href="add-to-wishlist.jsp?pid=<%=p.getPid()%>">ADD to Wishlist</a>
-                <%
-                }else{
-                	
-                
-                %>
-                 <a class="main_btn" href="remove-from-wishlist.jsp?pid=<%=p.getPid()%>">Remove From Wishlist</a>
-                <%
-                }
-                %>
-                
-               <%
               }
-               %>
+                %>
+
+                
+
+                
+                
+
+                
+
+                
+
+                
               </div>
             </div>
           </div>
+
+          
         </div>
       </div>
-    </div>
-    <!--================End Single Product Area =================-->
-
-    <!--================Product Description Area =================-->
-    
-    <!--================End Product Description Area =================-->
+    </section>
+    <!--================End Category Product Area =================-->
 
     <!--================ start footer Area  =================-->
     <footer class="footer-area section_gap">

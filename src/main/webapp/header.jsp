@@ -142,6 +142,32 @@
                         </ul>
                        
                 </div>
+                
+                <div class="col-lg-2 pr-0">
+                <ul class="nav navbar-nav center_nav pull-right">
+                <li class="nav-item">
+                <a href="wishlist.jsp" class="icons">
+                <i class="ti-heart" aria-hidden="true">
+                
+                </i>
+                
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href=" " class="icons">
+                <i class="ti-shopping-cart" aria-hidden="true">
+                
+                </i>
+                
+                </a>
+                </li>
+                
+                
+                
+                
+                </ul>
+                
+                </div>
 
              
               </div>
