@@ -1,3 +1,4 @@
+<%@page import="com.dao.CartDao"%>
 <%@page import="com.dao.WishlistDao"%>
 <%@page import="com.dao.ProductDao"%>
 <%@page import="com.bean.Product"%>
@@ -77,7 +78,7 @@
               
               <%
                 
-              if(u ==null){
+              if(u == null){
              %>  
             	  <a class="main_btn" href="login.jsp">Login</a>
               <%
@@ -85,8 +86,23 @@
               
               else{
               %>
+              <%
+                boolean flag1 =CartDao.checkCart(p.getPid(), u.getUid());
+                if(flag1==false)
+                {
+                %>
+                <a class="main_btn" href="add-to-cart.jsp?pid=<%=p.getPid()%>">ADD to Cart</a>
+                <%
+                }else{
+                	
+                
+                %>
+                 <a class="main_btn" href="remove-from-cart.jsp?pid=<%=p.getPid()%>">Remove From Cart</a>
+                <%
+                }
+                %>
               
-                <a class="main_btn" href="seller-edit-product.jsp?pid=<%=p.getPid()%>">ADD To Cart</a>
+                
                 
                 <%
                 boolean flag =WishlistDao.checkwishlist(p.getPid(), u.getUid());

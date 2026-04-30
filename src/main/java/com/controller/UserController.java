@@ -11,9 +11,14 @@ import jakarta.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
+import com.bean.Cart;
 import com.bean.User;
+import com.bean.wishlist;
+import com.dao.CartDao;
 import com.dao.Userdao;
+import com.dao.WishlistDao;
 
 @WebServlet("/UserController")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 512 , maxRequestSize = 1024 * 1024 * 512  ) //512 mb data
@@ -106,6 +111,13 @@ public class UserController extends HttpServlet {
 					session.setAttribute("u", u);
 					
 					if(u.getUsertype().equals("buyer")) {
+						
+					List<wishlist> list=WishlistDao.getWishlistByUser(u.getUid());
+					session.setAttribute("wishlist_count", list.size());
+					
+					List<Cart> list1=CartDao.getCartByUser(u.getUid());
+					session.setAttribute("cart_count", list1.size());
+					
 					request.getRequestDispatcher("index.jsp").forward(request, response);
 					}else {
 						request.getRequestDispatcher("seller-index.jsp").forward(request, response);

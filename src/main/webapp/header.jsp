@@ -148,14 +148,17 @@
                 <li class="nav-item">
                 <a href="wishlist.jsp" class="icons">
                 <i class="ti-heart" aria-hidden="true">
+                  <%=session.getAttribute("wishlist_count")%>
                 
                 </i>
                 
                 </a>
+              
                 </li>
                 <li class="nav-item">
-                <a href=" " class="icons">
+                <a href="cart.jsp" class="icons">
                 <i class="ti-shopping-cart" aria-hidden="true">
+                <%=session.getAttribute("cart_count")%>
                 
                 </i>
                 
